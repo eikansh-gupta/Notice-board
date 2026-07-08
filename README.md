@@ -4,12 +4,13 @@ A full-stack CRUD Notice Board built with Next.js (Pages Router) and Prisma, bac
 
 ## Live Demo
 
-- App: [add your Vercel URL here after deployment]
-- Repo: [add your GitHub URL here]
+- App: https://notice-board-lac.vercel.app
+- Repo: https://github.com/eikansh-gupta/Notice-board
 
 ## Features
 
 - Create, read, update, and delete notices
+- Reusable Notice Form for both create and edit operations
 - Categories: Exam, Event, General
 - Priority levels: Normal, Urgent — Urgent notices always appear above Normal ones (sorted at the database level via Prisma `orderBy`, not in the browser)
 - Optional image (via URL) per notice
@@ -17,6 +18,13 @@ A full-stack CRUD Notice Board built with Next.js (Pages Router) and Prisma, bac
 - Delete requires explicit confirmation
 - Server-side validation on every write operation — never relies on frontend checks alone
 - Data persists in a hosted PostgreSQL database; nothing is lost on refresh or redeploy
+
+## Prerequisites
+
+- Node.js 18+
+- npm
+- Git
+- Neon PostgreSQL Database
 
 ## Tech Stack
 
@@ -29,6 +37,7 @@ A full-stack CRUD Notice Board built with Next.js (Pages Router) and Prisma, bac
 
 ## Folder Structure
 
+```
 notice-board/
 ├── prisma/
 │   └── schema.prisma
@@ -51,6 +60,7 @@ notice-board/
 ├── styles/
 │   └── globals.css
 └── README.md
+```
 
 ## API Endpoints
 
@@ -67,7 +77,7 @@ All write operations validate `title`, `body`, `category`, `priority`, and `publ
 ## Installation
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/eikansh-gupta/Notice-board.git
 cd notice-board
 npm install
 ```
@@ -76,7 +86,7 @@ npm install
 
 Create a `.env` file in the project root:
 
-DATABASE_URL="postgresql://<user>:<password>@<host>/<database>?sslmode=require"
+DATABASE_URL="your_neon_database_url"
 
 Use `.env.example` as a reference. Never commit `.env` — it's already in `.gitignore`.
 
@@ -113,11 +123,17 @@ Visit `http://localhost:3000`.
 3. Add the `DATABASE_URL` environment variable in Vercel's project settings
 4. Deploy — Vercel builds and hosts the app automatically on every push
 
+## Future Improvements
+
+If I had more time, I would implement:
+
+- Image upload using Cloudinary instead of image URLs.
+- Search and filter notices.
+- Pagination for large datasets.
+- User authentication and authorization.
+
 ## AI Usage Disclosure
 
-This project was built with the assistance of Claude (Anthropic). AI was used to:
-- Plan the architecture, database schema, and API design
-- Generate the initial implementation of components, API routes, and pages
-- Explain design decisions (e.g., why Urgent-first sorting uses Prisma `orderBy` with a `desc` sort on a string field, why a singleton Prisma client is needed in Next.js dev mode)
+AI tools were used to assist with understanding concepts, debugging issues, and reviewing implementation approaches during development.
 
 All code was reviewed, tested locally, and verified against the project requirements before deployment. Database provisioning (Neon), environment variable setup, and final deployment steps were carried out manually.
